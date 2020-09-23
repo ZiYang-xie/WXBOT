@@ -30,14 +30,13 @@ module.exports = exports = function(webot){
         pic: 'https://raw.github.com/node-webot/webot-example/master/qrcode.jpg',
         url: 'https://github.com/node-webot/webot-example',
         description: [
-          '你可以试试以下指令:',
+          '你可以试试以下操作:',
             'game : 玩玩猜数字的游戏吧',
-            's+空格+关键词 : 我会帮你百度搜索喔',
-            's+空格+nde : 可以试试我的纠错能力',
-            '使用「位置」发送你的经纬度',
-            '重看本指令请回复help或问号',
+            'news : 查看最新推送 [Smart]',
+            '问我几点了可以获取当前时间',
+            '给我发图片可以返回图片hash值',
             '更多指令请回复more',
-            'PS: 点击下面的「查看全文」将跳转到我的github页'
+            '早安晚安我都能回哦 [Concerned]',
         ].join('\n')}
       // 返回值如果是list，则回复图文消息列表
       return reply.description;
@@ -53,8 +52,8 @@ module.exports = exports = function(webot){
       return '· ' + rule.description;
     }).join('\n').value();
 
-    return ['我的主人还没教我太多东西,你可以考虑帮我加下.\n可用的指令:\n'+ reply,
-      '没有更多啦！当前可用指令：\n' + reply];
+    return ['我的主人还没教我太多东西,你可以考虑帮我加下.\n可用的指令:\n'+ reply.description,
+      '没有更多啦！当前可用指令：\n' + reply.description];
   });
 
   webot.set('who_are_you', {
@@ -62,7 +61,7 @@ module.exports = exports = function(webot){
     // pattern 既可以是函数，也可以是 regexp 或 字符串(模糊匹配)
     pattern: /who|你是[谁\?]+/i,
     // 回复handler也可以直接是字符串或数组，如果是数组则随机返回一个子元素
-    handler: ['我是19CS的小机器人']
+    handler: ['我是Q比特']
   });
 
   // 正则匹配后的匹配组存在 info.query 中
