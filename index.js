@@ -114,7 +114,8 @@ module.exports = exports = function(webot){
       if (h < 17) return '还没到晚上哦';
       if (h < 21) return '睡得好早啊，晚安┏(＾0＾)┛';
       if (h >= 21) return '晚安啦 (¦3[▓▓] 晚安';
-  }, {
+    }
+  },{
     name: 'time',
     description: '想知道几点吗? [Smart] 发送: 几点了',
     pattern: /^(几点了|time|时间)\??$/i,
