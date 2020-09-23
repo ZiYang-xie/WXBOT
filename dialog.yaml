@@ -1,10 +1,10 @@
 ---
 # 直接回复
-hi|你好|nihao: '你好，我是19CS的小机器人，AC'
-
+hi|你好|nihao|hello: 
+  - '你好，我是19CS的小机器人，Q比特 [Hey]'
+  - '你好呀 [Hey]'
+  - '你好,今天过得如何？有没有被ICS和数据结构难住呀 [Doge]'
 # 随机回复一个
-hello: 
-  - 你好呀
 
 test:
   - Roger that!
