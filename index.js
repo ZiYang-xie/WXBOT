@@ -108,11 +108,11 @@ module.exports = exports = function(webot){
       if (h < 3) return '快睡吧，很晚了';
       if (h < 5) return '还没睡吗，在刷夜编程吗？[Doge]';
       if (h < 7) return '你就是007？[Doge]';
-      if (h < 9) return '你不会才睡吧';
+      if (h < 9) return '是不是日夜颠倒了 [Doge]';
       if (h < 12) return '...[Sweats]';
       if (h < 14) return '这是...晚上？';
       if (h < 17) return '还没到晚上哦';
-      if (h < 21) return '睡得好早啊，晚安┏(＾0＾)┛';
+      if (h < 21) return '晚上好呀，今天过得怎么样 [Hey]';
       if (h >= 21) return '晚安啦 (¦3[▓▓] 晚安';
     }
   },{
