@@ -94,21 +94,21 @@ module.exports = exports = function(webot){
       if (h < 5) return '这才几点钟啊，您就醒了？';
       if (h < 7) return '早啊官人！您可起得真早呐~ 给你请安了！\n 今天想参加点什么活动呢？';
       if (h < 9) return 'Morning, sir! 新的一天又开始了！您今天心情怎么样？';
-      if (h < 12) return '这都几点了，还早啊...';
+      if (h < 12) return '这都几点了，还早啊...[Sweats]';
       if (h < 14) return '人家中午饭都吃过了，还早呐？';
       if (h < 17) return '如此美好的下午，是很适合出门逛逛的';
-      if (h < 21) return '早，你确定？';
-      if (h >= 21) return '您还是早点睡吧...';
+      if (h < 21) return '早，你确定？[Sweats]';
+      if (h >= 21) return '您还是早点睡吧...[Sweats]';
     }
   }, {
     name: 'time',
-    description: '想知道几点吗? 发送: time',
+    description: '想知道几点吗? [Smart] 发送: time',
     pattern: /^(几点了|time)\??$/i,
     handler: function(info) {
       var d = new Date();
       var h = d.getHours();
       var t = '现在是服务器时间' + h + '点' + d.getMinutes() + '分';
-      if (h < 4 || h > 22) return t + '，夜深了，早点睡吧 [月亮]';
+      if (h < 4 || h > 22) return t + '，夜深了，早点睡吧 (¦3[▓▓] 晚安';
       if (h < 6) return t + '，您还是再多睡会儿吧';
       if (h < 9) return t + '，又是一个美好的清晨呢，今天准备去哪里玩呢？';
       if (h < 12) return t + '，一日之计在于晨，今天要做的事情安排好了吗？';
@@ -124,9 +124,9 @@ module.exports = exports = function(webot){
     pattern: /是男.还是女.|你.*男的女的/,
     handler: '你猜猜看呐',
     replies: {
-      '/女|girl/i': '人家才不是女人呢',
+      '/女|girl/i': '不对哦',
       '/男|boy/i': '是的，我就是翩翩公子一枚',
-      'both|不男不女': '你丫才不男不女呢',
+      'both|不男不女': '你才不男不女呢，哼╭(╯^╰)╮',
       '不猜': '好的，再见了ヾ(￣▽￣)Bye~Bye~',
       // 请谨慎使用通配符
       '/.*/': function reguess(info) {
@@ -169,7 +169,7 @@ module.exports = exports = function(webot){
     var num = info.session.guess_answer;
 
     if (r === num) {
-      return '你真聪明!';
+      return '你真聪明!୧(๑•̀◡•́๑)૭';
     }
 
     var rewaitCount = info.session.rewait_count || 0;
