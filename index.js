@@ -52,12 +52,12 @@ module.exports = exports = function(webot){
       return '· ' + rule.description;
     }).join('\n').value();
 
-    return ['我的主人还没教我太多东西,你可以考虑帮我加下.\n可用的指令:\n'+ reply.description,
-      '没有更多啦！当前可用指令：\n' + reply.description];
+    return ['我的主人还没教我太多东西,你可以考虑帮我加下.\n可用的指令:\n'+ reply,
+      '没有更多啦！当前可用指令：\n' + reply];
   });
 
   webot.set('who_are_you', {
-    description: '想知道我是谁吗? 发送: who?',
+    description: '想知道我是谁吗? 发送: 你是谁?',
     // pattern 既可以是函数，也可以是 regexp 或 字符串(模糊匹配)
     pattern: /who|你是[谁\?]+/i,
     // 回复handler也可以直接是字符串或数组，如果是数组则随机返回一个子元素
@@ -66,7 +66,7 @@ module.exports = exports = function(webot){
 
   // 正则匹配后的匹配组存在 info.query 中
   webot.set('your_name', {
-    description: '自我介绍下吧, 发送: I am [enter_your_name]',
+    description: '自我介绍下吧, 发送: 我是 [输入你的名字]',
     pattern: /^(?:my name is|i am|我(?:的名字)?(?:是|叫)?)\s*(.*)$/i,
 
     // handler: function(info, action){
@@ -83,38 +83,55 @@ module.exports = exports = function(webot){
   // 支持一次性加多个（方便后台数据库存储规则）
   webot.set([{
     name: 'morning',
-    description: '打个招呼吧, 发送: good morning',
-    pattern: /^(早上?好?|(good )?moring)[啊\!！\.。]*$/i,
+    description: '打个招呼吧, 发送: 早上好',
+    pattern: /^(早上?好?|(good )?moring|早安)[啊\!！\.。]*$/i,
     handler: function(info){
       var d = new Date();
       var h = d.getHours();
       if (h < 3) return '[嘘] 我这边还是深夜呢，别吵着大家了';
-      if (h < 5) return '这才几点钟啊，您就醒了？';
-      if (h < 7) return '早啊官人！您可起得真早呐~ 给你请安了！\n 今天想参加点什么活动呢？';
+      if (h < 5) return '这才几点钟啊，就醒了？很有精神！';
+      if (h < 7) return '又被迫起床上早八吗 [Doge]';
       if (h < 9) return 'Morning, sir! 新的一天又开始了！您今天心情怎么样？';
       if (h < 12) return '这都几点了，还早啊...[Sweats]';
       if (h < 14) return '人家中午饭都吃过了，还早呐？';
-      if (h < 17) return '如此美好的下午，是很适合出门逛逛的';
+      if (h < 17) return '如此美好的下午，是很适合自习的';
       if (h < 21) return '早，你确定？[Sweats]';
       if (h >= 21) return '您还是早点睡吧...[Sweats]';
     }
+  },{
+    name: 'morning',
+    description: '打个招呼吧, 发送: 晚上好',
+    pattern: /^((Q比特)?晚上?好?|(good )?morning|晚安)[啊\!！\.。]*$/i,
+    handler: function(info){
+      var d = new Date();
+      var h = d.getHours();
+      if (h < 3) return '快睡吧，很晚了';
+      if (h < 5) return '还没睡吗，在刷夜编程吗？[Doge]';
+      if (h < 7) return '你就是007？[Doge]';
+      if (h < 9) return '你不会才睡吧';
+      if (h < 12) return '...[Sweats]';
+      if (h < 14) return '这是...晚上？';
+      if (h < 17) return '还没到晚上哦';
+      if (h < 21) return '睡得好早啊，晚安┏(＾0＾)┛';
+      if (h >= 21) return '晚安啦 (¦3[▓▓] 晚安';
   }, {
     name: 'time',
-    description: '想知道几点吗? [Smart] 发送: time',
+    description: '想知道几点吗? [Smart] 发送: 几点了',
     pattern: /^(几点了|time|时间)\??$/i,
     handler: function(info) {
       var d = new Date();
       var h = d.getHours();
-      var t = '现在是服务器时间' + h + '点' + d.getMinutes() + '分';
+      var t = '现在是' + h + '点' + d.getMinutes() + '分\n';
       if (h < 4 || h > 22) return t + '，夜深了，早点睡吧 (¦3[▓▓] 晚安';
-      if (h < 6) return t + '，您还是再多睡会儿吧';
-      if (h < 9) return t + '，又是一个美好的清晨呢，今天准备去哪里玩呢？';
-      if (h < 12) return t + '，一日之计在于晨，今天要做的事情安排好了吗？';
-      if (h < 15) return t + '，午后的冬日是否特别动人？';
-      if (h < 19) return t + '，又是一个充满活力的下午！今天你的任务完成了吗？';
-      if (h <= 22) return t + '，这样一个美好的夜晚，有没有去看什么演出？';
+      if (h < 6) return t + '，您还是再多睡会儿吧 [Doge]';
+      if (h < 8) return t + '，早啊！起得真早呐~ ！今天课多吗？';
+      if (h < 10) return t + '，一日之计在于晨，今天要做的事情安排好了吗？';
+      if (h < 12) return t + '，中午了，午饭吃了吗？[Concerned]';
+      if (h < 15) return t + '，午后的复旦是否特别动人？';
+      if (h < 19) return t + '，又是一个充满活力的下午！今天你的任务完成了吗？[Hey]';
+      if (h <= 22) return t + '，这样一个美好的夜晚，夜跑去？[Concerned]';
       return t;
-    }
+  }
   }]);
 
   // 等待下一次回复
