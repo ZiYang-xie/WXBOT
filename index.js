@@ -214,6 +214,20 @@ module.exports = exports = function(webot){
     }
   });
 
+  webot.set('where to eat', {
+    description: '发送: meal/去哪吃饭 , 随机一个吃饭地点吧',
+    pattern: /(?:meal|去哪吃饭)\s*(\d*)/,
+    handler: function(info){
+      var random = _.random(1,5)
+      if(random == 1) return '今天就去北食吃吧！ヾ(◍°∇°◍)ﾉﾞ';
+      if(random == 2) return '就去旦苑吃吧';
+      if(random == 3) return '去南食，方便快捷又省心';
+      if(random == 4) return '去南苑改善一下伙食 [Smart]';
+      if(random == 5) return '去南小食转一转？';
+      if(random == 5) return '清真走起！[Doge]';
+    }
+  });
+
   webot.waitRule('wait_suggest_keyword', function(info, next){
     if (!info.text) {
       return next();
