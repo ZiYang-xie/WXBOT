@@ -213,7 +213,7 @@ module.exports = exports = function(webot){
       return '玩玩猜数字的游戏吧, 1~9,选一个';
     }
   });
-
+  
   webot.set('where to eat', {
     description: '发送: meal/去哪吃饭 , 随机一个吃饭地点吧',
     pattern: /(?:meal|去哪吃饭)\s*(\d*)/,
